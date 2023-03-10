@@ -36,4 +36,6 @@ def main():
             add_entry(cur_time, True)
         elif cur_status == 0 and internet_down: # If good return and internet is currently down
             add_entry(cur_time, False)
-            
+
+if __name__ == "__main__":
+    main()
