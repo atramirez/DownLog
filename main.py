@@ -26,7 +26,7 @@ def main():
         writer = csv.writer(log_file)
         writer.writerow(['Timestamp', 'Status'])
         
-    add_entry(cur_time, ping_google())
+    add_entry(datetime.datetime.now(), ping_google())
 
     while(True):
         time.sleep(60)
@@ -34,8 +34,11 @@ def main():
         cur_status = ping_google() 
         if cur_status != 0 and not internet_down: # If bad return and internet is currently up
             add_entry(cur_time, True)
+            print(f"{cur_time}:** Updating Internet Status to Down **")
         elif cur_status == 0 and internet_down: # If good return and internet is currently down
             add_entry(cur_time, False)
+            print(f"{cur_time}:** Updating Internet Status to Up **")
+
 
 if __name__ == "__main__":
     main()
